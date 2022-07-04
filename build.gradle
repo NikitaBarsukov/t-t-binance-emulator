@@ -1,8 +1,13 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '2.7.1'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
-group 'org.example'
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+
+group 'org.dev.barsukov'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -10,8 +15,26 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+//    Spring starters
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+//    DB
+    implementation group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'
+//    Swagger
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation 'org.springframework.boot:spring-boot-starters:2.2.13.RELEASE'
+//    Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+//    Other
+    implementation 'commons-io:commons-io:2.4'
+    implementation 'org.jboss.logging:jboss-logging:3.4.1.Final'
+    implementation 'org.reflections:reflections:0.9.11'
+//    Tests
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.0.3'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.0.3'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
 
 test {
