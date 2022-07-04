@@ -17,12 +17,13 @@ repositories {
 dependencies {
 //    Spring starters
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 //    DB
-    implementation group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'
+    implementation 'org.postgresql:postgresql:42.4.0'
+    implementation 'org.flywaydb:flyway-core'
 //    Swagger
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
-    implementation 'org.springframework.boot:spring-boot-starters:2.2.13.RELEASE'
 //    Lombok
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
