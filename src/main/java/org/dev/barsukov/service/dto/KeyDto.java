@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class KeyDto {
-    String key;
-    String secret;
+    Long id;
+    String apiKey;
+    String secretKey;
+    String listenKey;
 }

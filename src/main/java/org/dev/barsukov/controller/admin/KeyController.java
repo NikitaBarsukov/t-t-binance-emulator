@@ -1,10 +1,10 @@
-package org.dev.barsukov.controller.v1;
+package org.dev.barsukov.controller.admin;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dev.barsukov.service.crud.CrudKeyService;
 import org.dev.barsukov.service.dto.KeyDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,15 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/")
 public class KeyController {
     final CrudKeyService keyService;
-
-    @Autowired
-    public KeyController(CrudKeyService keyService) {
-        this.keyService = keyService;
-    }
 
     @ApiOperation(value = "Allows to get listenKey by id")
     @GetMapping(value = "/key/{keyId}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,14 +32,14 @@ public class KeyController {
 
     @ApiOperation(value = "Allows to create listenKey")
     @PostMapping(value = "/key", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<KeyDto> createUser(@RequestBody KeyDto key) {
-        log.info("Call createUser() with params: {}", key);
-        return new ResponseEntity<>(keyService.save(key), HttpStatus.CREATED);
+    public ResponseEntity<KeyDto> createUser(@RequestBody KeyDto keys) {
+        log.info("Call createUser() with params: {}", keys);
+        return new ResponseEntity<>(keyService.save(keys), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Allows to update listenKey data")
-    @PutMapping(value = "/key/{keyId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<KeyDto> updateUser(@PathVariable("keyId") Long id, @RequestBody KeyDto keyDto) {
+    @PutMapping(value = "/key", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<KeyDto> updateUser(@RequestBody KeyDto keyDto) {
         log.info("Call createUser() with params: {}", keyDto);
         return new ResponseEntity<>(keyService.save(keyDto), HttpStatus.OK);
     }

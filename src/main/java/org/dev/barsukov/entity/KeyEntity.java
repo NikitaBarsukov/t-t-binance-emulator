@@ -15,12 +15,14 @@ import javax.persistence.Table;
 @Builder(toBuilder = true)
 @Data
 @Entity
-@Table(name="key")
+@Table(name="listenkey")
 @NoArgsConstructor
 @AllArgsConstructor
 public class KeyEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    String key;
-    String secret;
+    Long id;
+    String apiKey;
+    String ApiSecret;
+    String listenKey;
 }
