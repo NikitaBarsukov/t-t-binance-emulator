@@ -11,7 +11,7 @@ import java.util.List;
 public class KeyConverterImpl implements KeyConverter {
     @Override
     public KeyDto toDto(KeyEntity entity) {
-        return null;
+        return new KeyDto(entity.getId(), entity.getApiKey(), entity.getApiSecret(), entity.getListenKey());
     }
 
     @Override
@@ -21,6 +21,6 @@ public class KeyConverterImpl implements KeyConverter {
 
     @Override
     public KeyEntity fromDto(KeyDto dto) {
-        return new KeyEntity(dto.getKey(), dto.getSecret());
+        return new KeyEntity(dto.getId(),dto.getApiKey(), dto.getSecretKey(), dto.getListenKey());
     }
 }
