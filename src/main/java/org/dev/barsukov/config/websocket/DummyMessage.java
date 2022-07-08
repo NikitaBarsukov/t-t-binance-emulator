@@ -1,11 +1,15 @@
 package org.dev.barsukov.config.websocket;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Message {
+@NoArgsConstructor
+@AllArgsConstructor
+public class DummyMessage {
     private String from;
     private String text;
 }

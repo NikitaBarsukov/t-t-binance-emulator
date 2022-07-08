@@ -17,11 +17,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").withSockJS();
+        //То куда коннектимся для хэндшейка
+        registry.addEndpoint("/hello").setAllowedOrigins("*");
     }
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/queue", "/topic");
+        registry.enableSimpleBroker("/topic"); //то куда пользователи подписываются
         registry.setApplicationDestinationPrefixes("/app");
     }
 //    https://huongdanjava.com/send-stomp-message-to-a-specific-user-with-spring-websocket.html
