@@ -1,6 +1,7 @@
 package org.dev.barsukov.controller.v1.WebSocket;
 
 import org.dev.barsukov.config.websocket.DummyMessage;
+import org.dev.barsukov.config.websocket.WebSocketTextHandler;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -13,52 +14,41 @@ import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.messaging.simp.stomp.StompSessionHandler;
 import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketHttpHeaders;
+import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.client.WebSocketClient;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class WSTest {
-    private static String URL = "ws://localhost:8080/hello";
+    private static String URL = "ws://localhost:8080/ws/someListenKey";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException, IOException {
         WebSocketClient client = new StandardWebSocketClient();
-
-        WebSocketStompClient stompClient = new WebSocketStompClient(client);
-        stompClient.setMessageConverter(new MappingJackson2MessageConverter());
-
-        StompSessionHandler sessionHandler = new StompSessionHandlerAdapter() {
+        WebSocketSession webSocketSession = client.doHandshake(new TextWebSocketHandler() {
             @Override
-            public void afterConnected(StompSession session, StompHeaders connectedHeaders) {
-                System.out.println("New session established : " + session.getSessionId());
-                session.subscribe("/topic/fhgjkdfhgsdfklhgdsf", this);
-                System.out.println("Subscribed to /topic/fhgjkdfhgsdfklhgdsf");
-                session.send("/app/chat", getSampleMessage());
-                System.out.println("Message sent to websocket server");
+            public void handleTextMessage(WebSocketSession session, TextMessage message) {
+                System.out.println("received message - " + message.getPayload());
             }
 
             @Override
-            public void handleException(StompSession session, StompCommand command, StompHeaders headers, byte[] payload, Throwable exception) {
-                System.out.println("Got an exception" + exception.getMessage());
+            public void afterConnectionEstablished(WebSocketSession session) {
+                System.out.println("established connection - " + session);
             }
+        }, new WebSocketHttpHeaders(), URI.create(URL)).get();
 
-            @Override
-            public Type getPayloadType(StompHeaders headers) {
-                return DummyMessage.class;
-            }
 
-            @Override
-            public void handleFrame(StompHeaders headers, Object payload) {
-                DummyMessage msg = (DummyMessage) payload;
-                System.out.println("Received : " + msg.getText() + " from : " + msg.getFrom());
-            }
-        };
-        stompClient.connect(URL, sessionHandler);
         new Scanner(System.in).nextLine();
+        webSocketSession.close();
     }
 
     private static DummyMessage getSampleMessage() {
@@ -67,4 +57,6 @@ public class WSTest {
         msg.setText("Howdy!!");
         return msg;
     }
+
+
 }

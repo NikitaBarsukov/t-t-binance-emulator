@@ -10,9 +10,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ChatController {
 
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate;
-
     @MessageMapping("/hello")
     @SendTo("/topic/messages")
     public String send(String username) {
