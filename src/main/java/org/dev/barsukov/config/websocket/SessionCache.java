@@ -3,19 +3,28 @@ package org.dev.barsukov.config.websocket;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class SessionCache {
-    private List<WebSocketSession> sessions = new ArrayList();
-
+    private final Map<String, WebSocketSession> sessions = new HashMap();
 
     public void put(WebSocketSession session) {
-        sessions.add(session);
+        sessions.put(extractId(session.getUri()), session);
     }
 
-    public List<WebSocketSession> getSessions() {
-        return sessions;
+    public WebSocketSession get(String id) {
+        return sessions.get(id);
+    }
+
+    public WebSocketSession remove(String id) {
+        return sessions.remove(id);
+    }
+
+    private String extractId(URI uri) {
+        String[] segments = uri.getPath().split("/");
+        return segments[segments.length - 1];
     }
 }
