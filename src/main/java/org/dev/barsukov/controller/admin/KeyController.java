@@ -22,33 +22,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/")
 public class KeyController {
-    final CrudKeyService keyService;
+    final CrudKeyService service;
 
     @ApiOperation(value = "Allows to get listenKey by id")
     @GetMapping(value = "/key/{keyId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public KeyDto getUser(@PathVariable Long keyId) {
-        return keyService.findOne(keyId);
+        return service.findOne(keyId);
     }
 
     @ApiOperation(value = "Allows to create listenKey")
     @PostMapping(value = "/key", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<KeyDto> createUser(@RequestBody KeyDto keys) {
         log.info("Call createUser() with params: {}", keys);
-        return new ResponseEntity<>(keyService.save(keys), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.save(keys), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Allows to update listenKey data")
     @PutMapping(value = "/key", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<KeyDto> updateUser(@RequestBody KeyDto keyDto) {
         log.info("Call createUser() with params: {}", keyDto);
-        return new ResponseEntity<>(keyService.save(keyDto), HttpStatus.OK);
+        return new ResponseEntity<>(service.save(keyDto), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Allows to delete listenKey by id")
     @DeleteMapping(value = "/key/{keyId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Long> deleteUser(@PathVariable Long keyId) {
         log.info("Call deleteUser() with params: {}", keyId);
-        keyService.delete(keyId);
+        service.delete(keyId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

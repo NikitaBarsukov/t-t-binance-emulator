@@ -8,18 +8,11 @@ import org.dev.barsukov.service.crud.CrudKeyService;
 import org.dev.barsukov.service.dto.KeyDto;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @AllArgsConstructor
 public class CrudKeyServiceImpl implements CrudKeyService {
     private final KeyRepository repository;
     private final KeyConverter converter;
-
-    @Override
-    public List<KeyDto> findAll() {
-        return converter.toDto(repository.findAll());
-    }
 
     @Override
     public KeyDto findOne(Long id) {

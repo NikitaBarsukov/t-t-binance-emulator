@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface CrudKeyService {
 
-    List<KeyDto> findAll();
-
     KeyDto findOne(Long id);
 
     void delete(Long id);
