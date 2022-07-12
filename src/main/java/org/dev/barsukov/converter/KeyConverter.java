@@ -11,5 +11,4 @@ public interface KeyConverter {
 
     KeyEntity fromDto (KeyDto dto);
 
-    List<KeyDto> toDto(List<KeyEntity> all);
 }
