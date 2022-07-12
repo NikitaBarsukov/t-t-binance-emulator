@@ -1,8 +1,13 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '2.7.1'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
-group 'org.example'
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+
+group 'org.dev.barsukov'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -10,8 +15,32 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+//    Spring starters
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.0'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket:2.7.0'
+//    DB
+    implementation 'org.postgresql:postgresql:42.4.0'
+    implementation 'org.flywaydb:flyway-core:8.5.12'
+//    Swagger
+    implementation 'io.springfox:springfox-swagger2:3.0.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+//    Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+//    Other
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'org.jboss.logging:jboss-logging:3.5.0.Final'
+    implementation 'org.reflections:reflections:0.10.2'
+//    Tests
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.0'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testCompileOnly 'org.mockito:mockito-junit-jupiter:4.6.1'
+
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
 test {
