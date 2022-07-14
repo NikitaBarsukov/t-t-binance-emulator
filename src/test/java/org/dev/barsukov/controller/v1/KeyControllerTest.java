@@ -4,8 +4,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.dev.barsukov.controller.admin.KeyController;
-import org.dev.barsukov.service.crud.CrudKeyService;
+import org.dev.barsukov.controller.fapi.v1.ListenKeyController;
+import org.dev.barsukov.service.crud.CrudListenKeyService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,11 +17,11 @@ import org.springframework.test.web.servlet.MockMvc;
 
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(KeyController.class)
+@WebMvcTest(ListenKeyController.class)
 public class KeyControllerTest {
 
     @MockBean
-    CrudKeyService employeeService;
+    CrudListenKeyService employeeService;
 
     @Autowired
     MockMvc mockMvc;

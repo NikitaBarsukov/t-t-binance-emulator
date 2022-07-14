@@ -28,4 +28,6 @@ public class CrudTradeServiceImpl implements CrudTradeService {
     public TradeDto save(TradeDto dto) {
         return converter.toDto(repository.save(converter.fromDto(dto)));
     }
+
+//    https://stackoverflow.com/questions/32441919/how-return-error-message-in-spring-mvc-controller
 }

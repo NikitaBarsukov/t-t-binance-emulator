@@ -1,3 +1,7 @@
+POST http://{{host}}/fapi/v1/listenKey
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+
+###
 POST http://{{host}}/api/v1/key
 Content-Type: application/json
 
