@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 @Builder(toBuilder = true)
 @Data
@@ -17,11 +18,13 @@ import javax.persistence.Table;
 @Table(name="listenkey")
 @NoArgsConstructor
 @AllArgsConstructor
-public class KeyEntity {
+public class ListenKeyEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long id;
     String apiKey;
     String ApiSecret;
     String listenKey;
+    Timestamp registerTime;
+    Timestamp validTime;
 }

@@ -1,0 +1,46 @@
+POST  http://{{host}}/admin/event
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+Content-Type: application/json
+
+
+{
+  "sessionId": "SomeSession",
+  "sendOrder": 1,
+  "event": {
+    "e": "ORDER_TRADE_UPDATE",
+    "T": 1657793991404,
+    "E": 1657793991406,
+    "o": {
+      "s": "BTCUSDT",
+      "c": "uuuMu5XluCQxQNpLBicaPO",
+      "S": "BUY",
+      "o": "MARKET",
+      "f": "GTC",
+      "q": "0.100",
+      "p": "0",
+      "ap": "0",
+      "sp": "0",
+      "x": "NEW",
+      "X": "NEW",
+      "i": 3069993194,
+      "l": "0",
+      "z": "0",
+      "L": "0",
+      "T": 1657793991404,
+      "t": 0,
+      "b": "0",
+      "a": "0",
+      "m": false,
+      "R": false,
+      "wt": "CONTRACT_PRICE",
+      "ot": "MARKET",
+      "ps": "BOTH",
+      "cp": false,
+      "rp": "0",
+      "pP": false,
+      "si": 0,
+      "ss": 0
+    }
+  }
+}
+
