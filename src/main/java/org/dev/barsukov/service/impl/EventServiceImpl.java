@@ -27,6 +27,7 @@ public class EventServiceImpl implements EventService {
    public List<JsonNode> putEvents(String apiKey) {
        //TODO time session and null sessions
        String listenKey = listenKeyCrud.findByApiKey(apiKey).getListenKey();
+       log.trace("WS listenKey found {}", listenKey);
        List<JsonNode> events = eventCrud.getActiveEventsBy(apiKey);
        WebSocketSession session = sessions.getBy(listenKey);
        if (session == null) {
