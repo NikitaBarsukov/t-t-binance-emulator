@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 @Builder(toBuilder = true)
 @Data
 @Entity
-@Table(name="trade_order")
+@Table(name="user_order")
 @NoArgsConstructor
 @AllArgsConstructor
 public class TradeEntity {
