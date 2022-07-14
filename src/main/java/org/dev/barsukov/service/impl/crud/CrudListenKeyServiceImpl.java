@@ -9,6 +9,9 @@ import org.dev.barsukov.service.crud.CrudListenKeyService;
 import org.dev.barsukov.service.dto.ListenKeyDto;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+
 @Service
 @AllArgsConstructor
 public class CrudListenKeyServiceImpl implements CrudListenKeyService {
@@ -37,6 +40,6 @@ public class CrudListenKeyServiceImpl implements CrudListenKeyService {
 
     @Override
     public ListenKeyEntity findByApiKey(String apiKey) {
-        return repository.findByApiKey(apiKey);
+        return repository.findTopByApiKeyAndValidTimeIsGreaterThan(apiKey, Timestamp.from(Instant.now()));
     }
 }
