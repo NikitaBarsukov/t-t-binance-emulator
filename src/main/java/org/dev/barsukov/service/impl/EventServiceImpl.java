@@ -1,11 +1,11 @@
 package org.dev.barsukov.service.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.sun.xml.bind.v2.TODO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dev.barsukov.config.websocket.WsSessionCache;
 import org.dev.barsukov.entity.ListenKeyEntity;
+import org.dev.barsukov.exception.NoSuchKeyException;
 import org.dev.barsukov.exception.WsSendException;
 import org.dev.barsukov.service.EventService;
 import org.dev.barsukov.service.crud.CrudEventHolderService;
@@ -25,18 +25,22 @@ public class EventServiceImpl implements EventService {
     private CrudListenKeyService listenKeyCrud;
 
    public List<JsonNode> putEvents(String apiKey) {
-       //TODO time session and null sessions
-       String listenKey = listenKeyCrud.findByApiKey(apiKey).getListenKey();
-       log.trace("WS listenKey found {}", listenKey);
+       ListenKeyEntity listenKeyEntity = listenKeyCrud.findByApiKey(apiKey);
+       if (listenKeyEntity == null) {
+           log.error("No active listenKey for this apiKey");
+           throw new NoSuchKeyException();
+       }
+       log.trace("WS listenKey found {}", listenKeyEntity.getListenKey());
        List<JsonNode> events = eventCrud.getActiveEventsBy(apiKey);
-       WebSocketSession session = sessions.getBy(listenKey);
+       log.trace("{} events were found by this apiKey", events.size());
+       WebSocketSession session = sessions.getBy(listenKeyEntity.getListenKey());
        if (session == null) {
            throw new WsSendException("No session found by this apiKey");
        }
        events.forEach(x ->  {
            try {
                session.sendMessage(new TextMessage(x.toPrettyString()));
-               log.info("Sended to ");
+               log.info("Event sent to {}", listenKeyEntity.getListenKey());
            } catch (Exception e) {
                log.error("Can not send Events");
                throw new WsSendException("Can not send Events", e);
