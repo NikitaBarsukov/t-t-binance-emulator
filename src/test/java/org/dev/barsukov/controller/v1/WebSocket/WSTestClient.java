@@ -1,6 +1,5 @@
 package org.dev.barsukov.controller.v1.WebSocket;
 
-import org.dev.barsukov.config.websocket.DummyMessage;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.WebSocketSession;
@@ -14,7 +13,7 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 public class WSTestClient {
-    private static String URL = "ws://localhost:8080/ws/someListenKey";
+    private static String URL = "ws://localhost:8080/ws/8IFKZs18kYjTZJl4T6JR8d8cHjAyfSnwAx5C2RRLjNrdGVvtgRNqM0pOQKB1iu6y";
 
     public static void main(String[] args) throws ExecutionException, InterruptedException, IOException {
         WebSocketClient client = new StandardWebSocketClient();
@@ -33,12 +32,5 @@ public class WSTestClient {
 
         new Scanner(System.in).nextLine();
         webSocketSession.close();
-    }
-
-    private static DummyMessage getSampleMessage() {
-        DummyMessage msg = new DummyMessage();
-        msg.setFrom("Nicky");
-        msg.setText("Howdy!!");
-        return msg;
     }
 }

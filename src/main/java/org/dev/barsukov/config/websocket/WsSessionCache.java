@@ -8,14 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class SessionCache {
+public class WsSessionCache {
     private final Map<String, WebSocketSession> sessions = new HashMap();
 
     public void put(WebSocketSession session) {
         sessions.put(extractId(session.getUri()), session);
     }
 
-    public WebSocketSession get(String id) {
+    public WebSocketSession getBy(String id) {
         return sessions.get(id);
     }
 
