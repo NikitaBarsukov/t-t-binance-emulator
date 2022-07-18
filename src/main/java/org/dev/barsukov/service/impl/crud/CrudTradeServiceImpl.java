@@ -25,9 +25,7 @@ public class CrudTradeServiceImpl implements CrudTradeService {
     }
 
     @Override
-    public TradeDto save(TradeDto dto) {
-        return converter.toDto(repository.save(converter.fromDto(dto)));
+    public TradeDto save(TradeDto dto, String apiKey) {
+        return converter.toDto(repository.save(converter.fromDto(dto, apiKey)));
     }
-
-//    https://stackoverflow.com/questions/32441919/how-return-error-message-in-spring-mvc-controller
 }

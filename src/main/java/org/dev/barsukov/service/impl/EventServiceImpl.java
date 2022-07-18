@@ -8,8 +8,10 @@ import org.dev.barsukov.entity.ListenKeyEntity;
 import org.dev.barsukov.exception.NoSuchKeyException;
 import org.dev.barsukov.exception.WsSendException;
 import org.dev.barsukov.service.EventService;
+import org.dev.barsukov.service.TradeService;
 import org.dev.barsukov.service.crud.CrudEventHolderService;
 import org.dev.barsukov.service.crud.CrudListenKeyService;
+import org.dev.barsukov.service.crud.CrudTradeService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -20,9 +22,10 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class EventServiceImpl implements EventService {
-    private WsSessionCache sessions;
-    private CrudEventHolderService eventCrud;
-    private CrudListenKeyService listenKeyCrud;
+    private final WsSessionCache sessions;
+    private final CrudEventHolderService eventCrud;
+    private final CrudListenKeyService listenKeyCrud;
+    private final TradeService tradeCrud;
 
    public List<JsonNode> putEvents(String apiKey) {
        ListenKeyEntity listenKeyEntity = listenKeyCrud.findByApiKey(apiKey);

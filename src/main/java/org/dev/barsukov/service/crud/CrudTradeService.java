@@ -8,5 +8,5 @@ public interface CrudTradeService {
 
     void delete(Long id);
 
-    TradeDto save(TradeDto dto);
+    TradeDto save(TradeDto dto, String apiKey);
 }

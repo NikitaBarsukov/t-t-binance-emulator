@@ -10,62 +10,42 @@ public class TradeConverterImpl implements TradeConverter {
 
     @Override
     public TradeDto toDto(TradeEntity entity) {
-        return  new TradeDto(
-            entity.getId(),
-            entity.getSessionId(),
-            entity.getAvgPrice(),
-            entity.getClientOrderId(),
-            entity.getCumQuote(),
-            entity.getExecutedQty(),
-            entity.getOrderId(),
-            entity.getOrigQty(),
-            entity.getOrigType(),
-            entity.getPrice(),
-            entity.getReduceOnly(),
-            entity.getSide(),
-            entity.getPositionSide(),
-            entity.getStatus(),
-            entity.getStopPrice(),
-            entity.getClosePosition(),
-            entity.getSymbol(),
-            entity.getTime(),
-            entity.getTimeInForce(),
-            entity.getType(),
-            entity.getActivatePrice(),
-            entity.getPriceRate(),
-            entity.getUpdateTime(),
-            entity.getWorkingType(),
-            entity.getPriceProtect()
-        );
+        return  TradeDto.builder()
+                .id(entity.getId())
+                .buyer(entity.getBuyer())
+                .commission(entity.getCommission())
+                .commissionAsset(entity.getCommissionAsset())
+                .maker(entity.getMaker())
+                .orderId(entity.getOrderId())
+                .price(entity.getPrice())
+                .qty(entity.getQty())
+                .quoteQty(entity.getQuoteQty())
+                .realizedPnl(entity.getRealizedPnl())
+                .side(entity.getSide())
+                .positionSide(entity.getPositionSide())
+                .symbol(entity.getSymbol())
+                .time(entity.getTime())
+                .build();
     }
 
     @Override
-    public TradeEntity fromDto(TradeDto dto) {
-        return TradeEntity.builder().id(dto.getId())
-                .sessionId(dto.getSessionId())
-                .avgPrice(dto.getAvgPrice())
-                .clientOrderId(dto.getClientOrderId())
-                .cumQuote(dto.getCumQuote())
-                .executedQty(dto.getExecutedQty())
-                .orderId(dto.getOrderId())
-                .origQty(dto.getOrigQty())
-                .origType(dto.getOrigType())
-                .price(dto.getPrice())
-                .reduceOnly(dto.getReduceOnly())
-                .side(dto.getSide())
-                .positionSide(dto.getPositionSide())
-                .status(dto.getStatus())
-                .stopPrice(dto.getStopPrice())
-                .closePosition(dto.getClosePosition())
-                .symbol(dto.getSymbol())
-                .time(dto.getTime())
-                .timeInForce(dto.getTimeInForce())
-                .type(dto.getType())
-                .activatePrice(dto.getActivatePrice())
-                .priceRate(dto.getPriceRate())
-                .updateTime(dto.getUpdateTime())
-                .workingType(dto.getWorkingType())
-                .priceProtect(dto.getPriceProtect())
-                .build();
+    public TradeEntity fromDto(TradeDto dto, String apiKey) {
+        return new TradeEntity(
+                dto.getId(),
+                apiKey,
+                dto.getBuyer(),
+                dto.getCommission(),
+                dto.getCommissionAsset(),
+                dto.getMaker(),
+                dto.getOrderId(),
+                dto.getPrice(),
+                dto.getQty(),
+                dto.getQuoteQty(),
+                dto.getRealizedPnl(),
+                dto.getSide(),
+                dto.getPositionSide(),
+                dto.getSymbol(),
+                dto.getTime()
+        );
     }
 }

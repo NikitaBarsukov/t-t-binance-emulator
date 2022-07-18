@@ -13,28 +13,17 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class TradeDto {
     Long id;
-    String sessionId;
-    String avgPrice;
-    String clientOrderId;
-    String cumQuote;
-    String executedQty;
+    String buyer;
+    String commission;
+    String commissionAsset;
+    String maker;
     Long orderId;
-    String origQty;
-    String origType;
     String price;
-    Boolean reduceOnly;
+    String qty;
+    String quoteQty;
+    String realizedPnl;
     String side;
     String positionSide;
-    String status;
-    String stopPrice;
-    Boolean closePosition;
     String symbol;
     Timestamp time;
-    String timeInForce;
-    String type;
-    String activatePrice;
-    String priceRate;
-    Timestamp updateTime;
-    String workingType;
-    Boolean priceProtect;
 }

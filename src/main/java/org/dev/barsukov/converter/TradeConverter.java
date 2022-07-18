@@ -8,5 +8,5 @@ public interface TradeConverter {
 
     TradeDto toDto(TradeEntity entity);
 
-    TradeEntity fromDto (TradeDto dto);
+    TradeEntity fromDto (TradeDto dto, String apiKey);
 }
