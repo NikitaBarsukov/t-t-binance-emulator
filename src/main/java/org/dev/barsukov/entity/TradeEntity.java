@@ -22,11 +22,11 @@ public class TradeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String ApKey;
-    String buyer;
+    String apiKey;
+    Boolean buyer;
     String commission;
     String commissionAsset;
-    String maker;
+    Boolean maker;
     Long orderId;
     String price;
     String qty;

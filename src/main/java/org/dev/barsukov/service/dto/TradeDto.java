@@ -13,10 +13,10 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class TradeDto {
     Long id;
-    String buyer;
+    Boolean buyer;
     String commission;
     String commissionAsset;
-    String maker;
+    Boolean maker;
     Long orderId;
     String price;
     String qty;

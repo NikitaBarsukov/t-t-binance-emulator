@@ -13,7 +13,7 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 public class WSTestClient {
-    private static String URL = "ws://localhost:8080/ws/8IFKZs18kYjTZJl4T6JR8d8cHjAyfSnwAx5C2RRLjNrdGVvtgRNqM0pOQKB1iu6y";
+    private static String URL = "ws://localhost:8080/ws/lCdxbAon2oXl5T8rBWPmQNwi5SEGVFNwHlmQpusKphrIVDhw9o0uQYOSTNw7G84O";
 
     public static void main(String[] args) throws ExecutionException, InterruptedException, IOException {
         WebSocketClient client = new StandardWebSocketClient();

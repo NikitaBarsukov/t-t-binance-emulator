@@ -1,6 +1,10 @@
 package org.dev.barsukov.service.impl;
 
-public class TradeServiceImpl {
+import org.dev.barsukov.service.TradeService;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TradeServiceImpl implements TradeService {
 
     
 }

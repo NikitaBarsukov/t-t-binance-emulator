@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dev.barsukov.service.EventService;
+import org.dev.barsukov.service.dto.OrderDto;
 import org.dev.barsukov.service.dto.TradeDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +25,8 @@ public class OrderController {
 
     @ApiOperation(value = "Creates an order. If the WS is open puts it in there by listenkey.")
     @PostMapping()
-    public ResponseEntity<Object> createOrder(@RequestHeader("X-MBX-APIKEY") String apiKey,  @RequestBody TradeDto dto) {
-        List<JsonNode> sentEvents = service.putEvents(apiKey);
+    public ResponseEntity<Object> createOrder(@RequestHeader("X-MBX-APIKEY") String apiKey,  @RequestBody OrderDto dto) {
+        List<JsonNode> sentEvents = service.putEvents(dto, apiKey);
         return ResponseEntity.ok(sentEvents);
     }
 }

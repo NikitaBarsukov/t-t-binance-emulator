@@ -1,7 +1,9 @@
 package org.dev.barsukov.service.impl.crud;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
 import org.dev.barsukov.converter.TradeConverter;
+import org.dev.barsukov.entity.TradeEntity;
 import org.dev.barsukov.exception.NoSuchTradeException;
 import org.dev.barsukov.repository.TradeRepository;
 import org.dev.barsukov.service.crud.CrudTradeService;
@@ -23,6 +25,11 @@ public class CrudTradeServiceImpl implements CrudTradeService {
     public void delete(Long id) {
 
     }
+
+	@Override
+	public TradeDto save(TradeEntity entity) {
+        return converter.toDto(repository.save(entity));
+	}
 
     @Override
     public TradeDto save(TradeDto dto, String apiKey) {
