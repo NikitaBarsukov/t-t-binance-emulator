@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dev.barsukov.service.EventService;
 import org.dev.barsukov.service.dto.OrderDto;
-import org.dev.barsukov.service.dto.TradeDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/admin/order")
-public class OrderController {
+public class AdminOrderController {
     private final EventService service;
 
     @ApiOperation(value = "Creates an order. If the WS is open puts it in there by listenkey.")

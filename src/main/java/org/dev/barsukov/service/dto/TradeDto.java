@@ -1,5 +1,6 @@
 package org.dev.barsukov.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,5 +26,6 @@ public class TradeDto {
     String side;
     String positionSide;
     String symbol;
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     Timestamp time;
 }

@@ -5,14 +5,17 @@ import org.dev.barsukov.entity.OrderEntity;
 import org.dev.barsukov.service.dto.OrderDto;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class OrderConverterImpl implements OrderConverter {
 
     @Override
     public OrderDto toDto(OrderEntity entity) {
         return  new OrderDto(
-            entity.getId(),
-            entity.getSessionId(),
+            null, //entity.getId()
+            null, //entity.getSessionId(),
             entity.getAvgPrice(),
             entity.getClientOrderId(),
             entity.getCumQuote(),
@@ -67,5 +70,10 @@ public class OrderConverterImpl implements OrderConverter {
                 .workingType(dto.getWorkingType())
                 .priceProtect(dto.getPriceProtect())
                 .build();
+    }
+
+    @Override
+    public List<OrderDto> toDto(List<OrderEntity> allByBySessionId) {
+        return allByBySessionId.stream().map(this::toDto).collect(Collectors.toList());
     }
 }

@@ -12,7 +12,7 @@ public interface CrudListenKeyService {
 
     ListenKeyDto save(ListenKeyDto dto);
 
-    ListenKeyEntity save(ListenKeyEntity dto);
+    ListenKeyEntity save(ListenKeyEntity entity);
 
-    ListenKeyEntity findByApiKey(String apiKey);
+    ListenKeyEntity findActualByApiKey(String apiKey);
 }

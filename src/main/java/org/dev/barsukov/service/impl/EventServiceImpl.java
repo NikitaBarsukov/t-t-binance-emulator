@@ -11,10 +11,9 @@ import org.dev.barsukov.exception.WsSendException;
 import org.dev.barsukov.service.EventService;
 import org.dev.barsukov.service.crud.CrudEventHolderService;
 import org.dev.barsukov.service.crud.CrudListenKeyService;
+import org.dev.barsukov.service.crud.CrudOrderService;
 import org.dev.barsukov.service.crud.CrudTradeService;
 import org.dev.barsukov.service.dto.OrderDto;
-import org.dev.barsukov.service.dto.TradeDto;
-import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -31,9 +30,13 @@ public class EventServiceImpl implements EventService {
     private final CrudEventHolderService eventCrud;
     private final CrudListenKeyService listenKeyCrud;
     private final CrudTradeService tradeCrud;
+    private final CrudOrderService orderCrud;
 
    public List<JsonNode> putEvents(OrderDto dto, String apiKey) {
-       ListenKeyEntity listenKeyEntity = listenKeyCrud.findByApiKey(apiKey);
+       dto.setSessionId(apiKey);
+       orderCrud.save(dto);
+       log.trace("Order saved");
+       ListenKeyEntity listenKeyEntity = listenKeyCrud.findActualByApiKey(apiKey);
        if (listenKeyEntity == null) {
            log.error("No active listenKey for this apiKey");
            throw new NoSuchKeyException();

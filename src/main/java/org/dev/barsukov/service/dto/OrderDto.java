@@ -1,5 +1,7 @@
 package org.dev.barsukov.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +13,7 @@ import java.sql.Timestamp;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDto {
     Long id;
     String sessionId;
@@ -29,11 +32,13 @@ public class OrderDto {
     String stopPrice;
     Boolean closePosition;
     String symbol;
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     Timestamp time;
     String timeInForce;
     String type;
     String activatePrice;
     String priceRate;
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     Timestamp updateTime;
     String workingType;
     Boolean priceProtect;
