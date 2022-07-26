@@ -5,6 +5,9 @@ import org.dev.barsukov.entity.TradeEntity;
 import org.dev.barsukov.service.dto.TradeDto;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class TradeConverterImpl implements TradeConverter {
 
@@ -47,5 +50,12 @@ public class TradeConverterImpl implements TradeConverter {
                 dto.getSymbol(),
                 dto.getTime()
         );
+    }
+
+    @Override
+    public List<TradeDto> toDto(List<TradeEntity> trades) {
+        return trades.stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 }

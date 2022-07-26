@@ -6,8 +6,8 @@ GET  http://{{host}}/fapi/v1/AllOrders?orderId=1917643&limit=1
 X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
 ###
 
-#POST  http://{{host}}/admin/order
-POST  http://{{host}}/fapi/v1/order
+POST  http://{{host}}/admin/order
+#POST  http://{{host}}/fapi/v1/order
 X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
 Content-Type: application/json
 
