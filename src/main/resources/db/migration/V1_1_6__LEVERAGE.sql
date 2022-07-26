@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS LEVERAGE
+(
+    ID                 BIGSERIAL,
+    LEVERAGE           INT,
+    MAX_NOTIONAL_VALUE VARCHAR(255),
+    SYMBOL             VARCHAR(255),
+    UNIQUE (ID)
+)
