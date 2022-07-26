@@ -38,11 +38,10 @@ public class OrderController {
     }
 
 
-    @ApiOperation(value = "Creates an order. If the WS is open puts it in there by listenkey.")
+    @ApiOperation(value = "Creates an order.")
     @PostMapping()
     public ResponseEntity<Object> createOrder(@RequestHeader("X-MBX-APIKEY") String apiKey,
                                               @RequestBody OrderDto dto) {
-//        List<JsonNode> sentEvents = eventService.putEvents(dto, apiKey);
         dto.setSessionId(apiKey);
         return ResponseEntity.ok(crudOrderService.save(dto));
     }

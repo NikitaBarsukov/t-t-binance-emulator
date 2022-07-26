@@ -4,12 +4,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dev.barsukov.service.TransactionService;
-import org.dev.barsukov.service.crud.CrudTransactionService;
 import org.dev.barsukov.service.dto.TransactionDto;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +21,7 @@ public class IncomeController {
 
   private final TransactionService service;
 
-    @ApiOperation(value = "Creates an order. If the WS is open puts it in there by listenkey.")
+    @ApiOperation(value = "Creates an history.")
     @GetMapping()
     public List<TransactionDto> getIncome(@RequestHeader("X-MBX-APIKEY") String apiKey,
                                               @RequestParam(required = false) String symbol,
@@ -44,4 +40,3 @@ public class IncomeController {
 
     }
 }
-
