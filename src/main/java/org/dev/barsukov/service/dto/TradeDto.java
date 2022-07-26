@@ -1,5 +1,6 @@
 package org.dev.barsukov.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,28 +14,18 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class TradeDto {
     Long id;
-    String sessionId;
-    String avgPrice;
-    String clientOrderId;
-    String cumQuote;
-    String executedQty;
+    Boolean buyer;
+    String commission;
+    String commissionAsset;
+    Boolean maker;
     Long orderId;
-    String origQty;
-    String origType;
     String price;
-    Boolean reduceOnly;
+    String qty;
+    String quoteQty;
+    String realizedPnl;
     String side;
     String positionSide;
-    String status;
-    String stopPrice;
-    Boolean closePosition;
     String symbol;
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     Timestamp time;
-    String timeInForce;
-    String type;
-    String activatePrice;
-    String priceRate;
-    Timestamp updateTime;
-    String workingType;
-    Boolean priceProtect;
 }

@@ -2,11 +2,16 @@ package org.dev.barsukov.service.impl.crud;
 
 import lombok.AllArgsConstructor;
 import org.dev.barsukov.converter.TradeConverter;
+import org.dev.barsukov.entity.TradeEntity;
 import org.dev.barsukov.exception.NoSuchTradeException;
 import org.dev.barsukov.repository.TradeRepository;
 import org.dev.barsukov.service.crud.CrudTradeService;
 import org.dev.barsukov.service.dto.TradeDto;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -24,10 +29,25 @@ public class CrudTradeServiceImpl implements CrudTradeService {
 
     }
 
+	@Override
+	public TradeDto save(TradeEntity entity) {
+        return converter.toDto(repository.save(entity));
+	}
+
     @Override
-    public TradeDto save(TradeDto dto) {
-        return converter.toDto(repository.save(converter.fromDto(dto)));
+    public List<TradeEntity> findAllBy(String sessionId, String symbol, Long fromId, Timestamp startTime, Timestamp endTime, Integer limit) {
+        return repository.findAllByUrlParams(sessionId,
+                symbol,
+                fromId,
+                startTime,
+                endTime,
+                PageRequest.of(0, limit));
+
+
     }
 
-//    https://stackoverflow.com/questions/32441919/how-return-error-message-in-spring-mvc-controller
+    @Override
+    public TradeDto save(TradeDto dto, String apiKey) {
+        return converter.toDto(repository.save(converter.fromDto(dto, apiKey)));
+    }
 }

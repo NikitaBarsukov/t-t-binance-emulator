@@ -9,6 +9,7 @@ import org.dev.barsukov.service.dto.EventHolderDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,8 @@ public class EventController {
 
     @ApiOperation(value = "Helps handle events for sending in WS")
     @PostMapping()
-    public ResponseEntity<Object> createEvent(@RequestBody EventHolderDto dto) throws JsonProcessingException {
+    public ResponseEntity<Object> createEvent(@RequestHeader("X-MBX-APIKEY") String apiKey, @RequestBody EventHolderDto dto) throws JsonProcessingException {
+        dto.setApiKey(apiKey);
         eventHolderCrud.save(dto);
         return ResponseEntity.ok(null);
     }

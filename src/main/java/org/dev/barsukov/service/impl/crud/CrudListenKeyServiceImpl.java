@@ -39,7 +39,7 @@ public class CrudListenKeyServiceImpl implements CrudListenKeyService {
     }
 
     @Override
-    public ListenKeyEntity findByApiKey(String apiKey) {
+    public ListenKeyEntity findActualByApiKey(String apiKey) {
         return repository.findTopByApiKeyAndValidTimeIsGreaterThan(apiKey, Timestamp.from(Instant.now()));
     }
 }

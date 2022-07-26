@@ -15,25 +15,35 @@ import java.sql.Timestamp;
 @Builder(toBuilder = true)
 @Data
 @Entity
-@Table(name = "trade")
+@Table(name="user_order")
 @NoArgsConstructor
 @AllArgsConstructor
-public class TradeEntity {
+public class OrderEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long id;
-    String apiKey;
-    Boolean buyer;
-    String commission;
-    String commissionAsset;
-    Boolean maker;
+    String sessionId;
+    String avgPrice;
+    String clientOrderId;
+    String cumQuote;
+    String executedQty;
     Long orderId;
+    String origQty;
+    String origType;
     String price;
-    String qty;
-    String quoteQty;
-    String realizedPnl;
+    Boolean reduceOnly;
     String side;
     String positionSide;
+    String status;
+    String stopPrice;
+    Boolean closePosition;
     String symbol;
     Timestamp time;
+    String timeInForce;
+    String type;
+    String activatePrice;
+    String priceRate;
+    Timestamp updateTime;
+    String workingType;
+    Boolean priceProtect;
 }

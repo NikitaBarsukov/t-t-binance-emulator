@@ -10,7 +10,7 @@ import java.time.Instant;
 
 @Service
 public class ListenKeyConverterImpl implements ListenKeyConverter {
-    private Integer HOUR_SEC = 3_600;
+    private int HOUR_SEC = 3_600;
 
     @Override
     public ListenKeyDto toDto(ListenKeyEntity entity) {
