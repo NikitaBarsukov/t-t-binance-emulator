@@ -1,16 +1,16 @@
 package org.dev.barsukov.converter;
 
-import org.dev.barsukov.entity.CrudFailEntity;
-import org.dev.barsukov.service.dto.CrudFailDto;
+import org.dev.barsukov.entity.FailOrderEntity;
+import org.dev.barsukov.service.dto.FailOrderDto;
 
 import java.util.List;
 
 
-public interface CrudFailConverter {
+public interface FailOrderConverter {
 
-    CrudFailDto toDto(CrudFailEntity entity);
+    FailOrderDto toDto(FailOrderEntity entity);
 
-    CrudFailEntity fromDto (CrudFailDto dto, String apiKey);
+    FailOrderEntity fromDto (FailOrderDto dto, String apiKey);
 
-    List<CrudFailDto> toDto(List<CrudFailEntity> trades);
+    List<FailOrderDto> toDto(List<FailOrderEntity> trades);
 }

@@ -14,8 +14,10 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CrudFailDto {
+public class FailOrderDto {
     Long id;
-    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
-    Timestamp time;
+    String symbol;
+    String error;
+    String apiKey;
+    Boolean isActive;
 }

@@ -1,20 +1,20 @@
 package org.dev.barsukov.service.crud;
 
-import org.dev.barsukov.entity.CrudFailEntity;
-import org.dev.barsukov.service.dto.CrudFailDto;
+import org.dev.barsukov.entity.FailOrderEntity;
+import org.dev.barsukov.service.dto.FailOrderDto;
 
-import java.sql.Timestamp;
+
 import java.util.List;
 
-public interface CrudCrudFailService {
+public interface CrudFailOrderService {
 
-    CrudFailDto findOne(Long id);
+    FailOrderDto findOne(Long id);
 
     void delete(Long id);
 
-    CrudFailDto save(CrudFailDto dto, String apiKey);
+    FailOrderDto save(FailOrderDto dto, String apiKey);
 
-    CrudFailDto save(CrudFailEntity entity);
+    FailOrderDto save(FailOrderEntity entity);
 
-    List<CrudFailDto> save(List<CrudFailDto> dto, String apiKey);
+    List<FailOrderDto> save(List<FailOrderDto> dto, String apiKey);
 }

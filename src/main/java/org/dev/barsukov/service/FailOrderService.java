@@ -2,6 +2,6 @@ package org.dev.barsukov.service;
 
 
 
-public interface CrudFailService {
+public interface FailOrderService {
 
 }

@@ -1,31 +1,40 @@
 package org.dev.barsukov.service.impl.converter;
 
-import org.dev.barsukov.converter.CrudFailConverter;
-import org.dev.barsukov.entity.CrudFailEntity;
-import org.dev.barsukov.service.dto.CrudFailDto;
+import org.dev.barsukov.converter.FailOrderConverter;
+import org.dev.barsukov.entity.FailOrderEntity;
+import org.dev.barsukov.service.dto.FailOrderDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CrudFailConverterImpl implements CrudFailConverter {
+public class FailOrderConverterImpl implements FailOrderConverter {
 
     @Override
-    public CrudFailDto toDto(CrudFailEntity entity) {
-        return CrudFailDto.builder()
+    public FailOrderDto toDto(FailOrderEntity entity) {
+        return FailOrderDto.builder()
+                .id(entity.getId())
+                .symbol(entity.getSymbol())
+                .error(entity.getError())
+                .apiKey(entity.getApiKey())
+                .isActive(entity.getIsActive())
                 .build();
     }
 
     @Override
-    public CrudFailEntity fromDto(CrudFailDto dto, String apiKey) {
-        return new CrudFailEntity(
-
+    public FailOrderEntity fromDto(FailOrderDto dto, String apiKey) {
+        return new FailOrderEntity(
+                dto.getId(),
+                dto.getSymbol(),
+                dto.getError(),
+                apiKey,
+                dto.getIsActive()
         );
     }
 
     @Override
-    public List<CrudFailDto> toDto(List<CrudFailEntity> entities) {
+    public List<FailOrderDto> toDto(List<FailOrderEntity> entities) {
         return entities.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());

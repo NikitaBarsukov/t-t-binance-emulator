@@ -17,8 +17,12 @@ import javax.persistence.Table;
 @Table(name = "some")
 @NoArgsConstructor
 @AllArgsConstructor
-public class CrudFailEntity {
+public class FailOrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    String symbol;
+    String error;
+    String apiKey;
+    Boolean isActive;
 }
