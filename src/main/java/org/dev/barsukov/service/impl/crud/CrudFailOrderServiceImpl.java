@@ -34,16 +34,26 @@ public class CrudFailOrderServiceImpl implements CrudFailOrderService {
 	}
 
     @Override
-    public List<FailOrderDto> save(List<FailOrderDto> dto, String apiKey) {
+    public List<FailOrderDto> save(List<FailOrderDto> dto) {
         List<FailOrderEntity> entities = dto.stream()
-                .map(x -> converter.fromDto(x, apiKey))
+                .map(converter::fromDto)
                 .toList();
         repository.saveAll(entities);
         return dto;
     }
 
-    @Override
+	@Override
+	public List<FailOrderEntity> findAll() {
+		return repository.findAll();
+	}
+
+	@Override
+	public List<FailOrderEntity> findAllByApiKey(String apikey) {
+		return repository.findAllByApiKey(apikey);
+	}
+
+	@Override
     public FailOrderDto save(FailOrderDto dto, String apiKey) {
-        return converter.toDto(repository.save(converter.fromDto(dto, apiKey)));
+        return converter.toDto(repository.save(converter.fromDto(dto)));
     }
 }

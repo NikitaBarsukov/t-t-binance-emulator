@@ -12,9 +12,14 @@ public interface CrudFailOrderService {
 
     void delete(Long id);
 
+    List<FailOrderEntity> findAllByApiKey(String apikey);
+
     FailOrderDto save(FailOrderDto dto, String apiKey);
 
     FailOrderDto save(FailOrderEntity entity);
 
-    List<FailOrderDto> save(List<FailOrderDto> dto, String apiKey);
+    List<FailOrderDto> save(List<FailOrderDto> dto);
+
+    List<FailOrderEntity> findAll();
+
 }

@@ -1,0 +1,20 @@
+POST  http://{{host}}/admin/fail
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+Content-Type: application/json
+
+
+ {
+     "symbol": "BTC",
+     "payload": {
+       "msg": "Dummy message",
+       "code": "-123"
+     }
+ }
+
+###
+
+GET  http://{{host}}/admin/fail
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+
+
+###

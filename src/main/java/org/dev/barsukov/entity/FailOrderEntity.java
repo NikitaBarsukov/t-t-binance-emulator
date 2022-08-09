@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Builder(toBuilder = true)
 @Data
 @Entity
-@Table(name = "some")
+@Table(name = "order_fail")
 @NoArgsConstructor
 @AllArgsConstructor
 public class FailOrderEntity {
@@ -22,7 +22,7 @@ public class FailOrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String symbol;
-    String error;
+    String payload;
     String apiKey;
     Boolean isActive;
 }

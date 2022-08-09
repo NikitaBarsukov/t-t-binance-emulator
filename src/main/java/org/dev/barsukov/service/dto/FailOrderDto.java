@@ -2,6 +2,7 @@ package org.dev.barsukov.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +18,7 @@ import java.sql.Timestamp;
 public class FailOrderDto {
     Long id;
     String symbol;
-    String error;
+    JsonNode payload;
     String apiKey;
     Boolean isActive;
 }

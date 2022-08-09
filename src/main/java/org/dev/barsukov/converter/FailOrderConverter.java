@@ -10,7 +10,7 @@ public interface FailOrderConverter {
 
     FailOrderDto toDto(FailOrderEntity entity);
 
-    FailOrderEntity fromDto (FailOrderDto dto, String apiKey);
+    FailOrderEntity fromDto (FailOrderDto dto);
 
     List<FailOrderDto> toDto(List<FailOrderEntity> trades);
 }
