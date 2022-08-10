@@ -4,7 +4,6 @@ Content-Type: application/json
 
 
 {
-  "sessionId": "SomeSession",
   "sendOrder": 1,
   "event":{
     "e": "ORDER_TRADE_UPDATE",
@@ -54,7 +53,6 @@ Content-Type: application/json
 
 
 {
-  "sessionId": "SomeSession",
   "sendOrder": 2,
   "event":{
     "e": "ACCOUNT_UPDATE",
@@ -95,7 +93,6 @@ Content-Type: application/json
 
 
 {
-  "sessionId": "SomeSession",
   "sendOrder": 3,
   "event":{
     "e": "ORDER_TRADE_UPDATE",
