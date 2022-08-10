@@ -6,5 +6,5 @@ public interface OrderService {
 
 	OrderDto getOrder(String sessionId, String symbol, Long orderId, String clientOrderId);
 
-	OrderDto createOrder(OrderDto dto);
+	Object createOrder(OrderDto dto);
 }

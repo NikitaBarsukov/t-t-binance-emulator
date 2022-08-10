@@ -21,4 +21,8 @@ public class FailOrderDto {
     JsonNode payload;
     String apiKey;
     Boolean isActive;
+
+    public JsonNode getPayload() {
+        return payload;
+    }
 }

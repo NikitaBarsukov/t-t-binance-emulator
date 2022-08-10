@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface FailOrderRepository extends JpaRepository<FailOrderEntity, Long> {
 
-		List<FailOrderEntity> findAllByApiKey(String apikey);
+		List<FailOrderEntity> findAllByApiKeyAndSymbolAndIsActiveTrue(String apikey, String symbol);
 }

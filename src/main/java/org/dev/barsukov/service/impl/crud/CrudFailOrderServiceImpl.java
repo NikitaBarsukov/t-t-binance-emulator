@@ -3,13 +3,13 @@ package org.dev.barsukov.service.impl.crud;
 import lombok.AllArgsConstructor;
 import org.dev.barsukov.converter.FailOrderConverter;
 import org.dev.barsukov.entity.FailOrderEntity;
-import org.dev.barsukov.exception.NoSuchFailOrderException;
 import org.dev.barsukov.repository.FailOrderRepository;
 import org.dev.barsukov.service.crud.CrudFailOrderService;
 import org.dev.barsukov.service.dto.FailOrderDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -18,8 +18,8 @@ public class CrudFailOrderServiceImpl implements CrudFailOrderService {
     private final FailOrderConverter converter;
 
     @Override
-    public FailOrderDto findOne(Long id) {
-        return converter.toDto(repository.findById(id).orElseThrow(NoSuchFailOrderException::new));
+    public Optional<FailOrderEntity> findOne(Long id) {
+        return repository.findById(id);
     }
 
     @Override
@@ -47,9 +47,14 @@ public class CrudFailOrderServiceImpl implements CrudFailOrderService {
 		return repository.findAll();
 	}
 
-	@Override
-	public List<FailOrderEntity> findAllByApiKey(String apikey) {
-		return repository.findAllByApiKey(apikey);
+    @Override
+    public FailOrderEntity update(FailOrderEntity entity) {
+        return repository.save(entity);
+    }
+
+    @Override
+	public List<FailOrderEntity> findAllByApiKeyAndSymbol(String symbol, String apikey) {
+		return repository.findAllByApiKeyAndSymbolAndIsActiveTrue(apikey, symbol);
 	}
 
 	@Override

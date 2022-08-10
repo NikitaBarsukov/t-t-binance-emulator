@@ -24,7 +24,6 @@ public class EventController {
     @PostMapping()
     public ResponseEntity<Object> createEvent(@RequestHeader("X-MBX-APIKEY") String apiKey, @RequestBody EventHolderDto dto) throws JsonProcessingException {
         dto.setApiKey(apiKey);
-        eventHolderCrud.save(dto);
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(eventHolderCrud.save(dto));
     }
 }

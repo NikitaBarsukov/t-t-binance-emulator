@@ -5,14 +5,13 @@ import org.dev.barsukov.service.dto.FailOrderDto;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CrudFailOrderService {
 
-    FailOrderDto findOne(Long id);
+    Optional<FailOrderEntity> findOne(Long id);
 
-    void delete(Long id);
-
-    List<FailOrderEntity> findAllByApiKey(String apikey);
+    List<FailOrderEntity> findAllByApiKeyAndSymbol(String symbol,String apikey);
 
     FailOrderDto save(FailOrderDto dto, String apiKey);
 
@@ -22,4 +21,7 @@ public interface CrudFailOrderService {
 
     List<FailOrderEntity> findAll();
 
+    FailOrderEntity update(FailOrderEntity entity);
+
+    void delete(Long id);
 }
