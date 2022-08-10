@@ -1,0 +1,30 @@
+POST  http://{{host}}/admin/history
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+Content-Type: application/json
+
+[
+ {
+     "symbol": "",
+     "incomeType": "TRANSFER",
+     "income": "-0.37500000",
+     "asset": "USDT",
+     "info":"TRANSFER",
+     "time": 1570608000000,
+     "tranId":"9689322392",
+      "tradeId":""
+  },
+  {
+      "symbol": "BTCUSDT",
+      "incomeType": "COMMISSION",
+      "income": "-0.01000000",
+      "asset": "USDT",
+      "info":"COMMISSION",
+      "time": 1570636800000,
+      "tranId":"9689322392",
+      "tradeId":"2059192"
+  }
+]
+###
+
+GET http://{{host}}/fapi/v1/income?startTime=1648760400000&endTime=1661979600000
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
