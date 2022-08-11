@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dev.barsukov.api.client.BinanceClient;
+import org.dev.barsukov.service.CommonHolderService;
 import org.dev.barsukov.service.TradeService;
 import org.dev.barsukov.service.dto.TradeDto;
 import org.hibernate.annotations.Cache;
@@ -23,13 +24,12 @@ import java.util.List;
 @CacheConfig(cacheNames = "exchangeInfos")
 @RequestMapping("/fapi/v1/exchangeInfo")
 public class ExchangeInfoController {
-    private final TradeService service;
-    private final BinanceClient binanceClient;
+    private final CommonHolderService service;
 
     @ApiOperation(value = "Gets trades by sessionId and symbol.")
     @GetMapping()
     @Cacheable
     public String getExchangeInfo() {
-        return binanceClient.getExchangeInfo();
+        return service.getExchangeInfo();
     }
 }

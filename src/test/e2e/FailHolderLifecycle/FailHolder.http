@@ -5,6 +5,7 @@ Content-Type: application/json
 
  {
      "symbol": "BTCUSDT",
+     "endpoint": "order",
      "payload": {
        "msg": "Dummy message",
        "code": "-123"
