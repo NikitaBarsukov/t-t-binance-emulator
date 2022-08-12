@@ -27,6 +27,11 @@ public class CrudFailServiceImpl implements CrudFailService {
         repository.deleteById(id);
     }
 
+	@Override
+	public List<FailEntity> findAllByApiKeyAndSymbolAndEndpoint(String apiKey, String endpoint) {
+		return repository.findAllByApiKeyAndEndpointAndIsActiveTrue(apiKey, endpoint);
+	}
+
 
 	@Override
 	public FailDto save(FailEntity entity) {
@@ -43,8 +48,8 @@ public class CrudFailServiceImpl implements CrudFailService {
     }
 
 	@Override
-	public List<FailEntity> findAll() {
-		return repository.findAll();
+	public List<FailEntity> findAll(String endpoint) {
+		return repository.findAllByEndpoint(endpoint);
 	}
 
     @Override

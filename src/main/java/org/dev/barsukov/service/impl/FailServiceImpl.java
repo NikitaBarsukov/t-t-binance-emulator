@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dev.barsukov.converter.FailConverter;
 import org.dev.barsukov.entity.FailEntity;
-import org.dev.barsukov.service.FailHolderService;
+import org.dev.barsukov.service.FailService;
 import org.dev.barsukov.service.crud.CrudFailService;
 import org.dev.barsukov.service.dto.FailDto;
 import org.springframework.stereotype.Service;
@@ -17,13 +17,13 @@ import java.util.Optional;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class FailServiceImpl implements FailHolderService {
+public class FailServiceImpl implements FailService {
     private final CrudFailService crud;
     private final FailConverter converter;
 
 	@Override
-	public List<FailDto> getAll() {
-		return converter.toDto(crud.findAll());
+	public List<FailDto> getAll(String endpoint) {
+		return converter.toDto(crud.findAll(endpoint));
 	}
 
     @Override
@@ -38,8 +38,7 @@ public class FailServiceImpl implements FailHolderService {
 
     @Override
     public FailDto updateFail(FailDto dto) {
-        FailEntity entity = converter.fromDto(dto);
-        return  converter.toDto(crud.update(entity));
+        return  converter.toDto(crud.update(converter.fromDto(dto)));
     }
 
     @Override
@@ -50,5 +49,10 @@ public class FailServiceImpl implements FailHolderService {
     @Override
     public List<FailEntity> getActiveFailsBySymbolAndEndPoint(String symbol, String sessionId, String endpoint) {
         return crud.findAllByApiKeyAndSymbolAndEndpoint(symbol, sessionId, endpoint);
+    }
+
+    @Override
+    public List<FailEntity> getActiveFailsByEndPoint(String apiKey, String endpoint) {
+        return crud.findAllByApiKeyAndSymbolAndEndpoint(apiKey, endpoint);
     }
 }

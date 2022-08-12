@@ -19,9 +19,11 @@ public interface CrudFailService {
 
     List<FailDto> save(List<FailDto> dto);
 
-    List<FailEntity> findAll();
+    List<FailEntity> findAll(String endpoint);
 
     FailEntity update(FailEntity entity);
 
     void delete(Long id);
+
+    List<FailEntity> findAllByApiKeyAndSymbolAndEndpoint(String sessionId, String endpoint);
 }

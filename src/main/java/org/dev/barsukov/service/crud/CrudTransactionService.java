@@ -13,6 +13,8 @@ public interface CrudTransactionService {
 
     void delete(Long id);
 
+    void delete(String apiKey);
+
     List<TransactionEntity> findAllBy(String apiKey,
                                                String symbol,
                                                String incomeType,

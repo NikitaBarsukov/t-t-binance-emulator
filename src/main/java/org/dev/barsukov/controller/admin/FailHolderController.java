@@ -3,7 +3,7 @@ package org.dev.barsukov.controller.admin;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.dev.barsukov.service.FailHolderService;
+import org.dev.barsukov.service.FailService;
 import org.dev.barsukov.service.dto.FailDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,18 +24,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/fail")
 public class FailHolderController {
-	private final FailHolderService service;
+	private final FailService service;
 
-	@ApiOperation(value = "Get failHolder by id.")
+	@ApiOperation(value = "Get failHolders by endpoint.")
 	@GetMapping()
-	public List<FailDto> getFailHolders(@RequestHeader("X-MBX-APIKEY") String apiKey) {
-		return service.getAll();
+	public List<FailDto> getFailHolders(@RequestHeader("X-MBX-APIKEY") String apiKey,
+										String endpoint) {
+		return service.getAll(endpoint);
 	}
 
-
-	@ApiOperation(value = "Gets all failHolders for orders by user apiKey.")
+	@ApiOperation(value = "Gets failHolder by id.")
 	@GetMapping("/{id}")
-	public ResponseEntity<FailDto> getFailHolder(@RequestHeader("X-MBX-APIKEY") String apiKey, @PathVariable("id") Long id) {
+	public ResponseEntity<FailDto> getFailHolder(@RequestHeader("X-MBX-APIKEY") String apiKey,
+												 @PathVariable("id") Long id) {
 		return ResponseEntity.of(service.get(id));
 	}
 
@@ -50,14 +51,17 @@ public class FailHolderController {
 	@ApiOperation(value = "Update failHolder on endpoint")
 	@PutMapping("/{id}")
 	public FailDto updateFailForOrder(@RequestHeader("X-MBX-APIKEY") String apiKey,
+									  @PathVariable("id") Long id,
 									  @RequestBody FailDto dto) {
 		dto.setApiKey(apiKey);
+		dto.setId(id);
 		return service.updateFail(dto);
 	}
 
 	@ApiOperation(value = "Delete failHolder on endpoint")
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteFailForOrder(@RequestHeader("X-MBX-APIKEY") String apiKey, @PathVariable("id") Long id) {
+	public ResponseEntity<Object> deleteFailForOrder(@RequestHeader("X-MBX-APIKEY") String apiKey,
+													 @PathVariable("id") Long id) {
 		service.deleteFail(id);
 		return new ResponseEntity<>(id, HttpStatus.OK);
 	}

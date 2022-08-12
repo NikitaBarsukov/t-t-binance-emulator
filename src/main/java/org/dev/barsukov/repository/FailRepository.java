@@ -7,5 +7,9 @@ import java.util.List;
 
 public interface FailRepository extends JpaRepository<FailEntity, Long> {
 
-		List<FailEntity> findAllByApiKeyAndSymbolAndEndpointAndIsActiveTrue(String apikey, String symbol, String endpoint);
+	List<FailEntity> findAllByApiKeyAndSymbolAndEndpointAndIsActiveTrue(String apikey, String symbol, String endpoint);
+
+	List<FailEntity> findAllByApiKeyAndEndpointAndIsActiveTrue(String apikey, String endpoint);
+
+	List<FailEntity> findAllByEndpoint(String endpoint);
 }

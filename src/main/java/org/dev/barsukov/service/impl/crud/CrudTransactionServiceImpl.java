@@ -29,6 +29,11 @@ public class CrudTransactionServiceImpl implements CrudTransactionService {
         repository.deleteById(id);
     }
 
+	@Override
+	public void delete(String apiKey) {
+		repository.deleteAll();
+	}
+
 
 	@Override
 	public TransactionDto save(TransactionEntity entity) {

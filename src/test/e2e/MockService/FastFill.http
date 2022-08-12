@@ -1,0 +1,25 @@
+POST  http://{{host}}/admin/mock
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+Content-Type: application/json
+
+{
+  "endpoint": "exchangeInfo",
+  "payload": {
+    "msg": "Dummy exchange Info rules"
+  }
+}
+###
+
+POST  http://{{host}}/admin/mock
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+Content-Type: application/json
+
+{
+  "endpoint": "leverage",
+  "payload": {
+     "leverage": 21,
+     "maxNotionalValue": "1000000",
+     "symbol": "BTCUSDT"
+  }
+}
+

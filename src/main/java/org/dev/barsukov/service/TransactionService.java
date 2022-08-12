@@ -10,4 +10,6 @@ public interface TransactionService {
     List<TransactionDto> getAllTransactions(String sessionId, String symbol, String incomeType, Long startTime, Long endTime, Integer limit);
 
     List<TransactionDto> save(List<TransactionDto> dto, String apiKey);
+
+    void delete(String apiKey);
 }

@@ -54,4 +54,9 @@ public class TransactionServiceImpl implements TransactionService {
     public List<TransactionDto> save(List<TransactionDto> dto, String apiKey) {
         return crud.save(dto, apiKey);
     }
+
+	@Override
+	public void delete(String apiKey) {
+		crud.delete(apiKey);
+	}
 }

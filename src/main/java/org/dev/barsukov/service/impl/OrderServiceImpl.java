@@ -3,7 +3,7 @@ package org.dev.barsukov.service.impl;
 import lombok.AllArgsConstructor;
 import org.dev.barsukov.converter.FailConverter;
 import org.dev.barsukov.entity.FailEntity;
-import org.dev.barsukov.service.FailHolderService;
+import org.dev.barsukov.service.FailService;
 import org.dev.barsukov.service.OrderService;
 import org.dev.barsukov.service.crud.CrudOrderService;
 import org.dev.barsukov.service.dto.OrderDto;
@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderServiceImpl implements OrderService {
 	private final CrudOrderService crudOrderService;
-	private final FailHolderService failsService;
+	private final FailService failsService;
 	private final FailConverter foConverter;
 
 	@Override

@@ -1,7 +1,8 @@
 package org.dev.barsukov.enums;
 
 public enum MockAvailableEndpoints {
-	EXCHANGE_INFO("exchangeInfo");
+	EXCHANGE_INFO("exchangeInfo"),
+	LEVERAGE("leverage");
 
 	private final String path;
 

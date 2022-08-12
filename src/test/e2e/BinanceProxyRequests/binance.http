@@ -1,1 +1,5 @@
 GET  http://{{host}}/fapi/v1/exchangeInfo
+###
+GET  http://{{host}}/fapi/v1/leverage
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+###

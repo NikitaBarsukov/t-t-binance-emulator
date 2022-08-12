@@ -4,22 +4,20 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dev.barsukov.service.CommonHolderService;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
 @AllArgsConstructor
 @RestController
-@RequestMapping("/fapi/v1/exchangeInfo")
-public class ExchangeInfoController {
+@RequestMapping("/fapi/v1/leverage")
+public class LeverageController {
     private final CommonHolderService service;
 
-    @ApiOperation(value = "Cacheable proxy answer from binance or from Db if it available")
+    @ApiOperation(value = "User leverage by api-key")
     @GetMapping()
-    @Cacheable("exchangeInfos")
-    public String getExchangeInfo() {
-        return service.getExchangeInfo();
+    public String getLeverage(@RequestHeader("X-MBX-APIKEY") String apiKey) {
+        return service.getLeverage(apiKey);
     }
 }
