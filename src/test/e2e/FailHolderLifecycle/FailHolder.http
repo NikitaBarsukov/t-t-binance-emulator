@@ -5,6 +5,7 @@ Content-Type: application/json
 
  {
      "symbol": "BTCUSDT",
+     "endpoint": "leverage",
      "payload": {
        "msg": "Dummy message",
        "code": "-123"
@@ -17,7 +18,7 @@ client.global.set("id", response.body["id"]);
 
 ###
 
-GET  http://{{host}}/admin/fail
+GET  http://{{host}}/admin/fail?endpoint=order
 X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
 ###
 

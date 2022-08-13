@@ -1,0 +1,44 @@
+POST  http://{{host}}/admin/mock
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+Content-Type: application/json
+
+{
+  "endpoint": "exchangeInfo",
+  "payload": {
+    "msg": "Dummy message",
+    "code": "-123"
+  }
+}
+
+> {%
+client.global.set("id", response.body["id"]);
+%}
+
+###
+
+GET  http://{{host}}/admin/mock?endpoint=exchangeInfo
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+###
+
+GET  http://{{host}}/admin/mock/{{id}}
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+###
+
+PUT  http://{{host}}/admin/mock/{{id}}
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+Content-Type: application/json
+
+
+{
+  "isActive": false,
+  "payload": {
+    "msg": "Updated Dummy message",
+    "code": "-123"
+  }
+}
+
+###
+
+DELETE  http://{{host}}/admin/mock/{{id}}
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+###

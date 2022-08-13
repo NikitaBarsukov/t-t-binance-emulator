@@ -40,7 +40,7 @@ public class OrderController {
 
     @ApiOperation(value = "Creates an order.")
     @PostMapping()
-    public ResponseEntity<Object> createOrder(@RequestHeader("X-MBX-APIKEY") String apiKey,
+    public ResponseEntity<Object> updateOrder(@RequestHeader("X-MBX-APIKEY") String apiKey,
                                               @RequestBody OrderDto dto) {
         dto.setSessionId(apiKey);
         return ResponseEntity.ok(service.createOrder(dto));

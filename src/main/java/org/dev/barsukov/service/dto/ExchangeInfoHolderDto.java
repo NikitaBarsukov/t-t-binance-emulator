@@ -2,7 +2,6 @@ package org.dev.barsukov.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,14 +14,8 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class FailOrderDto {
+public class ExchangeInfoHolderDto {
     Long id;
-    String symbol;
-    JsonNode payload;
-    String apiKey;
-    Boolean isActive;
-
-    public JsonNode getPayload() {
-        return payload;
-    }
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
+    Timestamp time;
 }

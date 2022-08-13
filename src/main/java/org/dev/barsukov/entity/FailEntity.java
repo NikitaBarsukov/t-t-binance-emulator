@@ -14,14 +14,15 @@ import javax.persistence.Table;
 @Builder(toBuilder = true)
 @Data
 @Entity
-@Table(name = "order_fail")
+@Table(name = "fail")
 @NoArgsConstructor
 @AllArgsConstructor
-public class FailOrderEntity {
+public class FailEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String symbol;
+    String endpoint;
     String payload;
     String apiKey;
     Boolean isActive;
