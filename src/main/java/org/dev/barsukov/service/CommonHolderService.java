@@ -21,4 +21,13 @@ public interface CommonHolderService {
 
     String getExchangeInfo();
 
-    String getLeverage(String apiKey);}
+    String getLeverage(String apiKey);
+
+    List<Object> getPositionRisk(String symbol, String apiKey);
+
+    Object getAccount(String apiKey);
+
+    Object getRestrictions(String apiKey);
+
+    Object getIncomeAsyncReq(String apiKey);
+}

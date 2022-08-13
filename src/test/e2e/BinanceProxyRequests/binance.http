@@ -3,3 +3,14 @@ GET  http://{{host}}/fapi/v1/exchangeInfo
 GET  http://{{host}}/fapi/v1/leverage
 X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
 ###
+GET  http://{{host}}/fapi/v2/positionRisk
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+###
+GET  http://{{host}}/fapi/v2/account
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+###
+GET  http://{{host}}/sapi/v1/account/apiRestrictions
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+###
+GET http://{{host}}/fapi/v1/income/asyn/
+###
