@@ -7,11 +7,13 @@ import org.dev.barsukov.service.CommonHolderService;
 import org.dev.barsukov.service.TransactionService;
 import org.dev.barsukov.service.dto.TransactionDto;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
 
 @Slf4j
@@ -22,7 +24,7 @@ public class IncomeController {
     private final TransactionService transactionService;
     private final CommonHolderService answerService;
 
-    @ApiOperation(value = "Creates an history.")
+    @ApiOperation(value = "Get user history.")
     @GetMapping()
     public List<TransactionDto> getIncome(@RequestHeader("X-MBX-APIKEY") String apiKey,
                                           @RequestParam(required = false) String symbol,
@@ -41,10 +43,18 @@ public class IncomeController {
 
     }
 
+    @ApiOperation(value = "Emulates async request for history downloading.")
+    @GetMapping("/asyn")
+    public Object getIncomeAsync(@RequestHeader("X-MBX-APIKEY") String apiKey,
+                                 @RequestParam(required = false) Long startTime,
+                                 @RequestParam(required = false) Long endTime) throws IOException {
+        Long id = transactionService.asyncHistoryRunCreateFileTask(apiKey, startTime, endTime);
+        return answerService.getIncomeAsyncReq(apiKey, id);
+    }
 
     @ApiOperation(value = "Emulates async request for history downloading.")
-    @GetMapping("asyn")
-    public Object getIncomeAsync(@RequestHeader("X-MBX-APIKEY") String apiKey) {
-        return answerService.getIncomeAsyncReq(apiKey);
+    @GetMapping("/asyn/{id}")
+    public Object getIncomeByIdAsync(@RequestHeader("X-MBX-APIKEY") String apiKey, @PathVariable Integer id) {
+        return answerService.getIncomeAsyncByIdReq(apiKey, id);
     }
 }

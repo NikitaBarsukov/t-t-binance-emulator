@@ -11,41 +11,63 @@ public class MockUtils {
 
     public String createSinglePositionRiskAnswer(int leverage) {
         return String.format("""
-                   {
-                        "entryPrice": "0.00000",
-                        "marginType": "isolated",\s
-                        "isAutoAddMargin": "false",
-                        "isolatedMargin": "0.00000000",\s
-                        "liquidationPrice": "0",\s
-                        "leverage": %d,\s
-                        "markPrice": "6679.50671178",  \s
-                        "maxNotionalValue": "20000000",\s
-                        "positionAmt": "0.000",
-                        "notional": "0",\s
-                        "isolatedWallet": "0",
-                        "symbol": "BTCUSDT",\s
-                        "unRealizedProfit": "0.00000000",\s
-                        "positionSide": "BOTH",
-                        "updateTime": 0
-                    }
+               {
+                    "entryPrice": "0.00000",
+                    "marginType": "isolated",\s
+                    "isAutoAddMargin": "false",
+                    "isolatedMargin": "0.00000000",\s
+                    "liquidationPrice": "0",\s
+                    "leverage": %d,\s
+                    "markPrice": "6679.50671178",  \s
+                    "maxNotionalValue": "20000000",\s
+                    "positionAmt": "0.000",
+                    "notional": "0",\s
+                    "isolatedWallet": "0",
+                    "symbol": "BTCUSDT",\s
+                    "unRealizedProfit": "0.00000000",\s
+                    "positionSide": "BOTH",
+                    "updateTime": 0
+                }
                 """, leverage);
     }
 
     public String createApiRestrictionAnswer() {
         return """
-                {
-                   "ipRestrict": false,
-                   "createTime": 1623840271000,
-                   "enableWithdrawals": false,
-                   "enableInternalTransfer": true,
-                   "permitsUniversalTransfer": true,
-                   "enableVanillaOptions": false,
-                   "enableReading": true,
-                   "enableFutures": false,
-                   "enableMargin": false,
-                   "enableSpotAndMarginTrading": false,
-                   "tradingAuthorityExpirationTime": 1628985600000
-                }
+            {
+               "ipRestrict": false,
+               "createTime": 1623840271000,
+               "enableWithdrawals": false,
+               "enableInternalTransfer": true,
+               "permitsUniversalTransfer": true,
+               "enableVanillaOptions": false,
+               "enableReading": true,
+               "enableFutures": false,
+               "enableMargin": false,
+               "enableSpotAndMarginTrading": false,
+               "tradingAuthorityExpirationTime": 1628985600000
+            }
+                """;
+    }
+
+    public String createAsyncHistoryReqAnswer(Long id) {
+        return String.format("""
+            {
+                "downloadId":"%d",
+                "avgCostTimestampOfLast30d":7241837
+            }
+                """, id);
+    }
+
+    public String createAsyncHistoryReqByIdAnswer() {
+        return """
+            {
+                "downloadId":"545923594199212032",
+                "status":"completed",  
+                "url":"www.binance.com",
+                "notified":true,        
+                "expirationTimestamp":1645009771000,
+                "isExpired":null
+            }
                 """;
     }
 

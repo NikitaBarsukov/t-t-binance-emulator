@@ -29,5 +29,7 @@ public interface CommonHolderService {
 
     Object getRestrictions(String apiKey);
 
-    Object getIncomeAsyncReq(String apiKey);
+    Object getIncomeAsyncReq(String apiKey, Long id);
+
+    Object getIncomeAsyncByIdReq(String apiKey, Integer id);
 }

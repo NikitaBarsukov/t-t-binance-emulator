@@ -119,8 +119,23 @@ public class CommonHolderServiceImpl implements CommonHolderService {
     }
 
     @Override
-    public Object getIncomeAsyncReq(String apiKey) {
-        return null;
+    public Object getIncomeAsyncReq(String apiKey, Long id) {
+        CommonHolderEntity answer = repo.findFirstByEndpointAndApiKey(MockAvailableEndpoints.ASYNC.getPath(), apiKey);
+        if (answer !=  null) {
+            return asJsonNode(answer.getPayload());
+        } else {
+            return asJsonNode(mocks.createAsyncHistoryReqAnswer(id));
+        }
+    }
+
+    @Override
+    public Object getIncomeAsyncByIdReq(String apiKey, Integer id) {
+        CommonHolderEntity answer = repo.findFirstByEndpointAndApiKey(MockAvailableEndpoints.ASYNC_ID.getPath(), apiKey);
+        if (answer !=  null) {
+            return asJsonNode(answer.getPayload());
+        } else {
+            return asJsonNode(mocks.createAsyncHistoryReqByIdAnswer());
+        }
     }
 
     private CommonHolderEntity updateFields(CommonHolderDto dto, Optional<CommonHolderEntity> entity) {
