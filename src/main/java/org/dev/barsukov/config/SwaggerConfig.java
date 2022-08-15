@@ -17,7 +17,7 @@ public class SwaggerConfig {
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.dev.barsukov.controller.v1"))
+                .apis(RequestHandlerSelectors.basePackage("org.dev.barsukov.controller"))
                 .build()
                 .apiInfo(metaData());
     }
