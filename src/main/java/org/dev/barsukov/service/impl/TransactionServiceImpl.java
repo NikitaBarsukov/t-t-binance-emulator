@@ -36,7 +36,7 @@ public class TransactionServiceImpl implements TransactionService {
     private final static int MONTH_SECONDS = 2630000;
     private final static String PROCESSING = "processing";
     private final static String COMPLETED = "completed";
-    private final static String HISTORY_FILE_DIR = "user-history-files";
+    private final static String DEFAULT_HISTORY_FILE_DIR = "user-history-files";
 
     public List<TransactionDto> getAllTransactions(String apiKey, String symbol, String incomeType, Long startTime, Long endTime, Integer limit) {
         Timestamp st = null;
@@ -73,10 +73,13 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Long asyncHistoryRunCreateFileTask(String apiKey, Long startTime, Long endTime) throws IOException {
         Long id = generateRandomReadableId();
+        String path = System.getenv("EMULATOR_HISTORY_DIR_ABS") != null
+                      ? System.getenv("EMULATOR_HISTORY_DIR_ABS")
+                      : DEFAULT_HISTORY_FILE_DIR;
         try {
-            Files.createDirectory(Paths.get(HISTORY_FILE_DIR));
+            Files.createDirectory(Paths.get(path));
         } catch (FileAlreadyExistsException ignored) {}
-        File file = new File(HISTORY_FILE_DIR + "/" + id + ".json");
+        File file = new File(path + "/" + id + ".json");
         file.createNewFile();
         statusesCache.put(id, PROCESSING);
         new Thread(() -> createHistoryFile(apiKey, startTime, endTime, file, id)).start();

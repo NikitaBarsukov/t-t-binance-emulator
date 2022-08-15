@@ -58,17 +58,17 @@ public class MockUtils {
                 """, id);
     }
 
-    public String createAsyncHistoryReqByIdAnswer() {
-        return """
+    public String createAsyncHistoryReqByIdAnswer(Long id, String status, String url, Long exp) {
+        return String.format("""
             {
-                "downloadId":"545923594199212032",
-                "status":"completed",  
-                "url":"www.binance.com",
-                "notified":true,        
-                "expirationTimestamp":1645009771000,
+                "downloadId":"%d",
+                "status":"%s",
+                "url":"%s",
+                "notified":true,
+                "expirationTimestamp":%d,
                 "isExpired":null
             }
-                """;
+                """, id, status, url, exp);
     }
 
     public String createAccountAnswer() {

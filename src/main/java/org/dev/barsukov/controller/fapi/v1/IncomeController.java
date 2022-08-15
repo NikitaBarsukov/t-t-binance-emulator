@@ -53,8 +53,8 @@ public class IncomeController {
     }
 
     @ApiOperation(value = "Emulates async request for history downloading.")
-    @GetMapping("/asyn/{id}")
-    public Object getIncomeByIdAsync(@RequestHeader("X-MBX-APIKEY") String apiKey, @PathVariable Integer id) {
-        return answerService.getIncomeAsyncByIdReq(apiKey, id);
+    @GetMapping("/asyn/id")
+    public Object getIncomeByIdAsync(@RequestHeader("X-MBX-APIKEY") String apiKey, Long downloadId) {
+        return answerService.getIncomeAsyncByIdReq(apiKey, downloadId);
     }
 }

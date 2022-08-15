@@ -31,5 +31,5 @@ public interface CommonHolderService {
 
     Object getIncomeAsyncReq(String apiKey, Long id);
 
-    Object getIncomeAsyncByIdReq(String apiKey, Integer id);
+    Object getIncomeAsyncByIdReq(String apiKey, Long id);
 }

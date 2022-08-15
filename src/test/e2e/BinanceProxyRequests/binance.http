@@ -14,6 +14,12 @@ X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
 ###
 GET http://{{host}}/fapi/v1/income/asyn
 X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+
+> {%
+client.global.set("downloadId", response.body["downloadId"]);
+%}
 ###
-GET http://{{host}}/fapi/v1/income/asyn/id
+GET http://{{host}}/fapi/v1/income/asyn/id?downloadId={{downloadId}}
 X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+###
+GET http://{{host}}/history/files/{{downloadId}}

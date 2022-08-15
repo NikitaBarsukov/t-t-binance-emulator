@@ -36,9 +36,7 @@ Content-Type: application/json
     "code": "-123"
   }
 }
-
 ###
-
 DELETE  http://{{host}}/admin/mock/{{id}}
 X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
 ###

@@ -16,10 +16,13 @@ import org.dev.barsukov.service.CommonHolderService;
 import org.dev.barsukov.service.FailService;
 import org.dev.barsukov.service.dto.CommonHolderDto;
 import org.dev.barsukov.utils.MockUtils;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -32,6 +35,10 @@ public class CommonHolderServiceImpl implements CommonHolderService {
     private final BinanceClient binanceClient;
     private final FailService failService;
     private final MockUtils mocks;
+    @Qualifier("statusesCache")
+    private final Map<Long, String> statusesCache;
+
+    private final static String DOWNLOAD_PATH = "/history/files/";
 
     @Override
     public CommonHolderDto addAnswer(CommonHolderDto dto, String apiKey) {
@@ -129,12 +136,17 @@ public class CommonHolderServiceImpl implements CommonHolderService {
     }
 
     @Override
-    public Object getIncomeAsyncByIdReq(String apiKey, Integer id) {
+    public Object getIncomeAsyncByIdReq(String apiKey, Long id) {
         CommonHolderEntity answer = repo.findFirstByEndpointAndApiKey(MockAvailableEndpoints.ASYNC_ID.getPath(), apiKey);
         if (answer !=  null) {
             return asJsonNode(answer.getPayload());
         } else {
-            return asJsonNode(mocks.createAsyncHistoryReqByIdAnswer());
+
+            String host = System.getenv("EMULATOR_HOST");
+            if (host == null) throw new RuntimeException("env EMULATOR_HOST not found");
+            String status = statusesCache.get(id);
+            //If no such status we will think that is already complete.  For example, there could be a server restart
+            return asJsonNode(mocks.createAsyncHistoryReqByIdAnswer(id, status != null ? status : "completed", host + DOWNLOAD_PATH + id, Instant.now().plusSeconds(3600).toEpochMilli()));
         }
     }
 
