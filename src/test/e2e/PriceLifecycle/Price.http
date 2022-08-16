@@ -1,0 +1,25 @@
+POST  http://{{host}}/admin/price
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+Content-Type: application/json
+
+[
+  {
+    "symbol": "BTCUSDT",
+    "price": "6000.01",
+    "time": 1589437530011
+  },
+  {
+      "symbol": "BTCRUB",
+      "price": "6000.02",
+      "time": 1589437530112
+  },
+  {
+    "symbol": "BTCUSDT",
+    "price": "6001.02",
+    "time": 1589437530211
+  }
+]
+###
+
+GET http://{{host}}/fapi/v1/ticker/price?symbol=BTCUSDT
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A

@@ -1,0 +1,135 @@
+POST  http://{{host}}/admin/event
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+Content-Type: application/json
+
+
+{
+  "sendOrder": 1,
+  "event":{
+    "e": "ORDER_TRADE_UPDATE",
+    "T": 1657793991404,
+    "E": 1657793991407,
+    "o": {
+      "s": "BTCUSDT",
+      "c": "uuuMu5XluCQxQNpLBicaPO",
+      "S": "BUY",
+      "o": "MARKET",
+      "f": "GTC",
+      "q": "0.100",
+      "p": "0",
+      "ap": "19980",
+      "sp": "0",
+      "x": "TRADE",
+      "X": "FILLED",
+      "i": 3069993194,
+      "l": "0.100",
+      "z": "0.100",
+      "L": "19980",
+      "n": "0.79920000",
+      "N": "USDT",
+      "T": 1657793991404,
+      "t": 235912386,
+      "b": "0",
+      "a": "0",
+      "m": false,
+      "R": false,
+      "wt": "CONTRACT_PRICE",
+      "ot": "MARKET",
+      "ps": "BOTH",
+      "cp": false,
+      "rp": "0",
+      "pP": false,
+      "si": 0,
+      "ss": 0
+    }
+  }
+}
+
+###
+
+POST  http://{{host}}/admin/event
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+Content-Type: application/json
+
+
+{
+  "sendOrder": 2,
+  "event":{
+    "e": "ACCOUNT_UPDATE",
+    "T": 1657793991404,
+    "E": 1657793991407,
+    "a": {
+      "B": [
+        {
+          "a": "USDT",
+          "wb": "2998.40225288",
+          "cw": "2998.40225288",
+          "bc": "0"
+        }
+      ],
+      "P": [
+        {
+          "s": "BTCUSDT",
+          "pa": "0.200",
+          "ep": "19971.83900",
+          "cr": "0",
+          "up": "-29.16267006",
+          "mt": "cross",
+          "iw": "0",
+          "ps": "BOTH",
+          "ma": "USDT"
+        }
+      ],
+      "m": "ORDER"
+    }
+  }
+}
+
+###
+
+POST  http://{{host}}/admin/event
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+Content-Type: application/json
+
+
+{
+  "sendOrder": 3,
+  "event":{
+    "e": "ORDER_TRADE_UPDATE",
+    "T": 1657793991404,
+    "E": 1657793991407,
+    "o": {
+      "s": "BTCUSDT",
+      "c": "uuuMu5XluCQxQNpLBicaPO",
+      "S": "BUY",
+      "o": "MARKET",
+      "f": "GTC",
+      "q": "0.100",
+      "p": "0",
+      "ap": "19980",
+      "sp": "0",
+      "x": "TRADE",
+      "X": "FILLED",
+      "i": 3069993194,
+      "l": "0.100",
+      "z": "0.100",
+      "L": "19980",
+      "n": "0.79920000",
+      "N": "USDT",
+      "T": 1657793991404,
+      "t": 235912386,
+      "b": "0",
+      "a": "0",
+      "m": false,
+      "R": false,
+      "wt": "CONTRACT_PRICE",
+      "ot": "MARKET",
+      "ps": "BOTH",
+      "cp": false,
+      "rp": "0",
+      "pP": false,
+      "si": 0,
+      "ss": 0
+    }
+  }
+}

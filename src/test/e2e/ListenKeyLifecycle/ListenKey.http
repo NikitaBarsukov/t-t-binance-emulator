@@ -1,0 +1,14 @@
+POST http://{{host}}/fapi/v1/listenKey
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+###
+
+PUT http://{{host}}/fapi/v1/listenKey
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+
+###
+
+DELETE http://{{host}}/fapi/v1/listenKey
+X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
+
+
+
