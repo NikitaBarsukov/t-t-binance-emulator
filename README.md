@@ -5,19 +5,47 @@
 
 ## Build
 
-org.gradle.jvmargs=-XX:MaxPermSize=512m -Xmx2048m First of all **JAVA_HOME** must be set in order to use **Gradle 7.5.1** for app building. In project root use
-command to start the build:
+First of all **JAVA_HOME** must be set in order to use **Gradle 7.5.1** for app building.
+
+Secondly, set all spring.datasource* props in `application.properties`.
+
+## Run
+In project root use command to start the Spring Boot App:
+
+`./gradlew bootRun`
+
+If you're facing with deprecated `XX:MaxPermSize=512m ` error, check your `gradle.properties` in `.gradle` in you profile-folder.   
+Comment `org.gradle.jvmargs=-XX:MaxPermSize=512m -Xmx2048m`
+
+## Migrations
+
+Migration should autorun on first App run. if it didn't happen you can run migrations by:
+
+`./gradlew flywayMigrate`
+
+Don't forget set props in `build.gradle` for migration Task using
+
+```
+flyway {
+    url = 'jdbc:postgresql://localhost:5432/postgres'
+    user = 'postgres'
+    password = 'postgres'
+    schemas = ''
+}
+```
+Migration folder `src/main/resources/db/migration`
 
 ## Using
 
 All endpoints need a header `X-MBX-APIKEY`. The value is any 255-length string.
-The only exception is /fapi/v1/exchangeInfo. It can be omitted there.
+The only exception is /fapi/v1/exchangeInfo. Header can be omitted there.
 The table of admin endpoints:
 
 | Method    | ENDPOINT      | Action                                                               |
 |-----------|---------------|----------------------------------------------------------------------|
 | `POST`    | admin/history | Creates transactions                                                 |
 | `POST`    | admin/order   | Creates order. If websocket already opened sends a trade there       |
+| `POST`    | admin/events  | Creates user events for WS sending                                   |
 | `POST`    | admin/price   | Creates prices                                                       |
 | `POST`    | admin/fail    | Creates an error for the next endpoint calls                         |
 | `POST`    | admin/mock    | Creates a response that will be returned for the next endpoint calls |
@@ -52,7 +80,7 @@ Content-Type: application/json
    }
 }
 ```
-***See test/e2e/MockService/** 
+***See test/e2e/MockService/FastFill.http** 
 
 The table of the mockable endpoints:
 
@@ -67,28 +95,61 @@ The table of the mockable endpoints:
 
 
 ## Another endpoints
-Another type of endpoints differs by being stored in SQL's first normal form (Value per cell). 
+Another type of endpoints differs by being stored in SQL's first normal form (Value per cell) to make it easier to work with it.
+
+The table of such endpoints answers:
+
+| Method | ENDPOINT                    | Available url params                              |
+|--------|-----------------------------|---------------------------------------------------|
+| `GET`  | /fapi/v1/ticker/price       | symbol                                            |
+| `GET`  | /fapi/v1/order              | symbol;orderId;clientOrderId                      |
+| `GET`  | /fapi/v1/income             | symbol;incomeType;startTime;endTime;limit         |
+| `GET`  | /fapi/v1/allOrders          | symbol;orderId;incomeType;startTime;endTime;limit |
+| `GET`  | /fapi/v1/userTrades         | startTime;endTime                                 |
+
+## Non-mockable
+
+`GET /fapi/v2/positionRisk`
+Non-mockable endpoint. Hardcoded in sourcecode. By default, creates leverage = 5. If we have a response for endpoint `leverage`  gets leverage from it.
+
+## Websockets
+
+| Method   | ENDPOINT             | Description                                         |
+|----------|----------------------|-----------------------------------------------------|
+| `POST`   | /fapi/v1/listenKey   | Generate a listenKey (random string) with meta-info |
+| `PUT`    | /fapi/v1/listenKey   | Update listenKey expiration time                    |
+| `DELETE` | /fapi/v1/listenKey   | Deletes user listenKey                              |
+*See `src/test/e2e/ListenKeyLifecycle/ListenKey.http`
+
+WebSocket gate available on `ws://<host>/ws/<listenKey>`
+
+Sent Events can be set by `admin/events`
+
+*See more `src/test/e2e/EventHolderLifecycle/EventHolder.http`
+
+Test Client available on `src/test/java/org/dev/barsukov/controller/v1/WebSocket/WSTestClient.java`
 
 
-GET /fapi/v1/ticker/price  Binance API Documentation Цены конфигурировать нужно через служебное апи
-GET /fapi/v1/order  Binance API Documentation поиск ордера (для случаев когда создание было неуспешным). Нужна возможность подставлять ответы через служебное апи
-GET /fapi/v1/income  Binance API Documentation запрос на получение  истории (ограничивается 3 месяцами)
-GET /fapi/v1/allOrders  Binance API Documentation  данные обо всех ордерах пользователя. Отдаем только то что создали через 5 и через служебное апи
-GET /fapi/v1/userTrades  Binance API Documentation  трейды пользователя. Отдаем только то что создали через 5 и через служебное апи
+###/fapi/v1/income/asyn
+To work with async history creation you need to set OS environment variables:
+- `EMULATOR_HOST` - service host for async/id JSON answer attribute `url`;
+- `EMULATOR_HISTORY_DIR_ABS` - folder where user history file will be kept.
+
+## Failable-endpoints
+It's endpoints whose answer can be overridden by endpoint `/admin/fail` regardless of availability any answer in `admin/mock`.
+If there is a record belongs to user in the `admin/fails` DB, the answer from `/fail` will always be returned first.
+Fails checked in these endpoints:
+- `/order`
+- `/leverage`
+
+*See more src/test/e2e/FailHolderLifecycle/FailHolder.http
 
 
+## The e2e folder
 
-GET /fapi/v2/positionRisk  Binance API Documentation используем для получения данных о позиции. Отдаем leverage позиций пользователя, если его никто не менял, то по умолчанию отдаем 5
+The e2e folder located by /test. It contains e2e-tests for most of the used endpoints. 
+This is written using IDEA HttpClient which is easy to embed in Intelij IDEA.
+* See https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html
 
-POST /fapi/v1/listenKey  Binance API Documentation  запрос на получение ключа и открытия потока данных пользователя (WS)
-PUT /fapi/v1/listenKey  Binance API Documentation  keepalive запрос для потока данных пользователя (WS)
-DELETE /fapi/v1/listenKey  Binance API Documentation  закрыть поток данных пользователя (WS)
-
-
-/fapi/v1/income/asyn/id
-
-Failable
-Migrations run
-application.prop
-
-localhost:8080/swagger-ui.html
+## Swagger 
+Some swagger UI available on `/swagger-ui.html`.
