@@ -20,7 +20,6 @@ import java.util.List;
 @RequestMapping("/fapi/v1/AllOrders")
 public class AllOrdersController {
     private final CrudOrderService crudOrderService;
-    private final EventService eventService;
 
     @ApiOperation(value = "Gets an order by orderId or origClientOrderId.")
     @GetMapping()

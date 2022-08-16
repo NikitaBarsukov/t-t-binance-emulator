@@ -42,8 +42,6 @@ public class CrudTradeServiceImpl implements CrudTradeService {
                 startTime,
                 endTime,
                 PageRequest.of(0, limit));
-
-
     }
 
     @Override
